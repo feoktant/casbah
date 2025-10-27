@@ -38,6 +38,14 @@ ThisBuild / resolvers ++= Seq(
   "TypeSafe releases" at "https://repo.typesafe.com/typesafe/releases",
 )
 
+inThisBuild(List(
+  semanticdbEnabled := true,
+  semanticdbOptions += "-P:semanticdb:synthetics:on",
+  semanticdbVersion := scalafixSemanticdb.revision,
+  scalafixScalaBinaryVersion := CrossVersion.binaryScalaVersion(scalaVersion.value),
+))
+
+
 val scalacOptionsSettings = Seq(
   scalacOptions ++= Seq("-unchecked", "-feature", "-Xlint:-missing-interpolator")
 )
@@ -72,6 +80,7 @@ val casbahCommonDependencies = Seq(
   libraryDependencies ++= Seq(
     Dependencies.mongoJavaDriver,
     Dependencies.slf4j,
+    Dependencies.scalaCompat,
     Dependencies.scalatime,
     Dependencies.slf4jJCL,
     Dependencies.scalatest,

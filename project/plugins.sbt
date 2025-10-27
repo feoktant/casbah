@@ -8,6 +8,8 @@
 
 addSbtPlugin("com.github.sbt" % "sbt-unidoc" % "0.5.0")
 
+addSbtPlugin("ch.epfl.scala" % "sbt-scalafix" % "0.11.0")
+
 //Option(System.getProperty("scoverage")).getOrElse("false") match {
 //  case "true" => addSbtPlugin("org.scoverage" % "sbt-scoverage" % "1.3.3")
 //  case _ => libraryDependencies ++= Seq()

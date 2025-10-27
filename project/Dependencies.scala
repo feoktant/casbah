@@ -22,6 +22,8 @@ object Dependencies {
   val mongoJavaDriver  = "org.mongodb" % "mongo-java-driver" % "3.10.1"
   val slf4j            = "org.slf4j" % "slf4j-api" % "2.0.17"
   val scalatime        = "com.github.nscala-time" %% "nscala-time" % "2.30.0"
+  val scalaCompat      = "org.scala-lang.modules" %% "scala-collection-compat" % "2.14.0"
+
   val junit            = "junit" % "junit" % "4.10" % Test
   val slf4jJCL         = "org.slf4j" % "slf4j-jcl" % "1.7.36" % Test
 
