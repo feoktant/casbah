@@ -129,8 +129,8 @@ lazy val examples = project.in(file("examples"))
 lazy val casbah = (project in file("."))
   .aggregate(commons, core, query, gridfs)
   .dependsOn(commons, core, query, gridfs)
+  .enablePlugins(ScalaUnidocPlugin)
   .settings(casbahDefaultSettings)
-  //  .settings(rootUnidocSettings)
   .settings(
     publish / skip := false,
     initialCommands / console := """import com.mongodb.casbah.Imports._"""
