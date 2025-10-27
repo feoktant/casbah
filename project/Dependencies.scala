@@ -17,15 +17,16 @@
 import sbt.*
 
 object Dependencies {
-  private val specs2 = "3.8.6"
+  private val specs2 = "3.8.9"
+  private val slf = "1.6.0"
 
-  val mongoJavaDriver  = "org.mongodb" % "mongo-java-driver" % "3.10.1"
-  val slf4j            = "org.slf4j" % "slf4j-api" % "2.0.17"
+  val mongoJavaDriver  = "org.mongodb" % "mongo-java-driver" % "3.2.2"
+  val slf4j            = "org.slf4j" % "slf4j-api" % slf
   val scalatime        = "com.github.nscala-time" %% "nscala-time" % "2.30.0"
   val scalaCompat      = "org.scala-lang.modules" %% "scala-collection-compat" % "2.14.0"
 
   val junit            = "junit" % "junit" % "4.10" % Test
-  val slf4jJCL         = "org.slf4j" % "slf4j-jcl" % "1.7.36" % Test
+  val slf4jJCL         = "org.slf4j" % "slf4j-jcl" % slf % Test
 
   val specs2Core  = "org.specs2" %% "specs2-core"  % specs2 % Test
   val specs2Junit = "org.specs2" %% "specs2-junit" % specs2 % Test
