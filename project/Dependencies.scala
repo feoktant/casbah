@@ -14,38 +14,21 @@
   * limitations under the License.
   */
 
-import sbt._
+import sbt.*
 
 object Dependencies {
-  val mongoJavaDriver  = "org.mongodb" % "mongo-java-driver" % "3.2.2"
-  val slf4j            = "org.slf4j" % "slf4j-api" % "1.6.0"
-  val junit            = "junit" % "junit" % "4.10" % "test"
-  val slf4jJCL         = "org.slf4j" % "slf4j-jcl" % "1.6.0" % "test"
+  private val specs2 = "3.8.6"
 
-  def scalatime(scalaVersion: String) =
-    scalaVersion match {
-      case _ => "com.github.nscala-time" %% "nscala-time" % "2.14.0"
-    }
+  val mongoJavaDriver  = "org.mongodb" % "mongo-java-driver" % "3.10.1"
+  val slf4j            = "org.slf4j" % "slf4j-api" % "2.0.17"
+  val scalatime        = "com.github.nscala-time" %% "nscala-time" % "2.30.0"
+  val junit            = "junit" % "junit" % "4.10" % Test
+  val slf4jJCL         = "org.slf4j" % "slf4j-jcl" % "1.7.36" % Test
 
-  def scalatest(scalaVersion: String) =
-    scalaVersion match {
-      case _ => "org.scalatest" %% "scalatest" % "3.0.0"  % "test"
-    }
+  val specs2Core  = "org.specs2" %% "specs2-core"  % specs2 % Test
+  val specs2Junit = "org.specs2" %% "specs2-junit" % specs2 % Test
+  val specs2Mock  = "org.specs2" %% "specs2-mock"  % specs2 % Test
 
-  def specs2(scalaVersion: String) =
-    scalaVersion match {
-      case _ => Seq("org.specs2" %% "specs2-core" % "3.8.6" % "test",
-        "org.specs2" %% "specs2-junit" % "3.8.6" % "test"
-      )
-    }
+  val scalatest = "org.scalatest" %% "scalatest" % "3.0.9"  % Test
 
-  def specs2Mock(scalaVersion: String) = {
-    Seq("org.specs2" %% s"specs2-mock" % "3.8.6" % "test")
-  }
-
-  def scalaStyle(scalaVersion: String) =
-    scalaVersion match {
-      case "2.10.5" =>  Seq("org.scalastyle" %% "scalastyle" % "0.4.0"  % "test")
-      case _   => Seq()
-    }
 }

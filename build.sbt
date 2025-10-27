@@ -70,14 +70,14 @@ val testSettings = Seq(
 // Common dependencies
 val casbahCommonDependencies = Seq(
   libraryDependencies ++= Seq(
-    "org.mongodb" % "mongo-java-driver" % "3.2.2",
-    "org.slf4j" % "slf4j-api" % "1.6.0",
-    "com.github.nscala-time" %% "nscala-time" % "2.14.0",
-    "org.slf4j" % "slf4j-jcl" % "1.6.0" % Test,
-    "org.scalatest" %% "scalatest" % "3.0.8" % Test,
-    "org.specs2" %% "specs2-core"  % "3.8.6" % Test,
-    "org.specs2" %% "specs2-junit" % "3.8.6" % Test,
-    "org.specs2" %% "specs2-mock"  % "3.8.6" % Test
+    Dependencies.mongoJavaDriver,
+    Dependencies.slf4j,
+    Dependencies.scalatime,
+    Dependencies.slf4jJCL,
+    Dependencies.scalatest,
+    Dependencies.specs2Core,
+    Dependencies.specs2Junit,
+    Dependencies.specs2Mock,
   )
 )
 
@@ -86,12 +86,7 @@ val casbahDefaultSettings = scalacOptionsSettings ++
   testSettings ++
   //  customScalariformSettings ++
   //  scalaStyleSettings ++
-  casbahCommonDependencies ++
-  Seq(
-    // Exclude potential problematic files during sbt 1.x migration
-    Compile / excludeFilter := (Compile / excludeFilter).value || "**/legacy/**" || "**/*Deprecated*",
-    Test / excludeFilter := (Test / excludeFilter).value || "**/legacy/**" || "**/*Deprecated*"
-  )
+  casbahCommonDependencies
 
 // Check style alias
 val checkAlias = addCommandAlias("check", ";clean;scalastyle;coverage;test;coverageAggregate;coverageReport")
@@ -106,11 +101,6 @@ val checkAlias = addCommandAlias("check", ";clean;scalastyle;coverage;test;cover
 lazy val commons = project.in(file("casbah-commons"))
   .settings(casbahDefaultSettings)
   .settings(
-    libraryDependencies ++= Seq(
-      "org.mongodb" % "mongodb-driver-sync" % "4.3.4",
-      "org.slf4j" % "slf4j-api" % "1.7.30",
-      "org.slf4j" % "slf4j-jcl" % "1.7.30"
-    ),
     Test / publishArtifact := true
   )
 
