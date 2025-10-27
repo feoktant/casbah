@@ -16,19 +16,21 @@
 
 //import com.typesafe.sbt.SbtScalariform.{ScalariformKeys, _}
 //import org.scalastyle.sbt.ScalastylePlugin._
-import sbt.Keys._
-import sbt._
+import sbt.Keys.*
+import sbt.*
 //import sbtunidoc.Plugin._
 
 // Global build settings
-ThisBuild / organization := "org.mongodb"
+ThisBuild / organization := "io.feoktant"
 ThisBuild / organizationHomepage := Some(url("http://www.mongodb.org"))
+ThisBuild / licenses := List(
+  "Apache 2.0" -> url("https://www.apache.org/licenses/LICENSE-2.0.txt"),
+)
 ThisBuild / version := "3.1.2-SNAPSHOT"
 ThisBuild / scalaVersion := "2.12.18"
 ThisBuild / crossScalaVersions := Seq("2.12.18")
-ThisBuild / javacOptions ++= Seq("-source", "1.8", "-target", "1.8", "-Xlint")
+ThisBuild / javacOptions ++= Seq("-source", "21", "-target", "21", "-Xlint")
 
-// Resolvers
 ThisBuild / resolvers ++= Seq(
   "Sonatype snapshots" at "https://oss.sonatype.org/content/repositories/snapshots",
   "Sonatype releases" at "https://oss.sonatype.org/content/repositories/releases",
@@ -36,11 +38,9 @@ ThisBuild / resolvers ++= Seq(
   "TypeSafe releases" at "https://repo.typesafe.com/typesafe/releases",
 )
 
-// ScalacOptions settings
-val scalacOptionsSettings = Seq(scalacOptions ++= (scalaBinaryVersion.value match {
-  case "2.10" => Seq("-unchecked", "-feature", "-Xlint")
-  case _ => Seq("-unchecked", "-feature", "-Xlint:-missing-interpolator")
-}))
+val scalacOptionsSettings = Seq(
+  scalacOptions ++= Seq("-unchecked", "-feature", "-Xlint:-missing-interpolator")
+)
 
 // Test Settings
 val testSettings = Seq(
@@ -97,7 +97,6 @@ val checkAlias = addCommandAlias("check", ";clean;scalastyle;coverage;test;cover
 //  Compile / doc / scalacOptions ++= Seq("-diagrams", "-unchecked", "-doc-root-content", "rootdoc.txt")
 //) ++ unidocSettings
 
-// Define subprojects
 lazy val commons = project.in(file("casbah-commons"))
   .settings(casbahDefaultSettings)
   .settings(
@@ -127,7 +126,6 @@ lazy val examples = project.in(file("examples"))
     publish / skip := true
   )
 
-// Define the root project to aggregate all subprojects
 lazy val casbah = (project in file("."))
   .aggregate(commons, core, query, gridfs)
   .dependsOn(commons, core, query, gridfs)
