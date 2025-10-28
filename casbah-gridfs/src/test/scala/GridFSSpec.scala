@@ -29,7 +29,7 @@ import com.mongodb.casbah.commons.conversions.scala._
 import com.mongodb.casbah.gridfs.Imports._
 
 import com.github.nscala_time.time.Imports._
-import org.specs2.specification.{ BeforeEach, BeforeExample }
+import org.specs2.specification.BeforeEach
 
 class GridFSSpec extends GridFSSpecification with BeforeEach {
 

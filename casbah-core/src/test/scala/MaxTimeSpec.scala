@@ -23,12 +23,12 @@
 package com.mongodb.casbah.test.core
 
 import com.mongodb.MongoExecutionTimeoutException
-import org.specs2.specification.BeforeAfterExample
+import org.specs2.specification.BeforeAfterEach
 import scala.concurrent.duration.{ Duration, SECONDS }
 
 import com.mongodb.casbah.Imports._
 
-class MaxTimeSpec extends CasbahDBTestSpecification with BeforeAfterExample {
+class MaxTimeSpec extends CasbahDBTestSpecification with BeforeAfterEach {
 
   skipAllUnless(serverIsAtLeastVersion(2, 5))
 

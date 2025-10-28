@@ -17,7 +17,7 @@
 import sbt.*
 
 object Dependencies {
-  private val specs2 = "3.8.9"
+  private val specs2 = "4.5.1"
   private val slf = "1.6.0"
 
   val mongoJavaDriver  = "org.mongodb" % "mongo-java-driver" % "3.2.2"

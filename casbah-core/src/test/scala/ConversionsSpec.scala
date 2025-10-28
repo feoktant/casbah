@@ -30,7 +30,7 @@ import com.mongodb.casbah.Imports._
 import com.mongodb.casbah.commons.conversions.scala._
 
 import com.github.nscala_time.time.Imports._
-import org.specs2.specification.{ BeforeEach, BeforeExample }
+import org.specs2.specification.BeforeEach
 
 class ConversionsSpec extends CasbahDBTestSpecification with BeforeEach {
   sequential
@@ -285,12 +285,14 @@ class ConversionsSpec extends CasbahDBTestSpecification with BeforeEach {
 
   "Casbah and Java Driver custom type encoding" should {
     val encoder = new com.mongodb.DefaultDBEncoder()
+
     def encode(doc: DBObject): Long = {
       val start = System.currentTimeMillis()
       val encoded = encoder.encode(doc)
       val end = System.currentTimeMillis()
       end - start
     }
+
     DeregisterConversionHelpers()
     DeregisterJodaTimeConversionHelpers()
 
