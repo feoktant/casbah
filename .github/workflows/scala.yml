@@ -25,8 +25,7 @@ jobs:
           - 27017:27017
 
         options: >-
-          --name mongo-e2e-tests-container 
-          # --setParameter enableTestCommands=1 ## todo: this doesn't work on gh actions
+          --name mongo-e2e-tests-container
 
     steps:
     - uses: actions/checkout@v4
