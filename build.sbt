@@ -71,14 +71,19 @@ val casbahCommonDependencies = Seq(
   libraryDependencies ++= Seq(
     Dependencies.mongoJavaDriver,
     Dependencies.slf4j,
-    Dependencies.scalaCompat,
     Dependencies.scalatime,
     Dependencies.slf4jJCL,
     Dependencies.scalatest,
     Dependencies.specs2Core,
     Dependencies.specs2Junit,
     Dependencies.specs2Mock,
-  )
+  ) ++ {
+    CrossVersion.partialVersion(scalaVersion.value) match {
+      case Some((2, 13)) =>
+        Seq("org.scala-lang.modules" %% "scala-collection-compat" % "2.14.0")
+      case _ => Nil
+    }
+  },
 )
 
 // Common settings for all projects

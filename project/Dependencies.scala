@@ -23,9 +23,7 @@ object Dependencies {
   val mongoJavaDriver  = "org.mongodb" % "mongo-java-driver" % "3.2.2"
   val slf4j            = "org.slf4j" % "slf4j-api" % slf
   val scalatime        = "com.github.nscala-time" %% "nscala-time" % "2.30.0"
-  val scalaCompat      = "org.scala-lang.modules" %% "scala-collection-compat" % "2.14.0"
 
-  val junit            = "junit" % "junit" % "4.10" % Test
   val slf4jJCL         = "org.slf4j" % "slf4j-jcl" % slf % Test
 
   val specs2Core  = "org.specs2" %% "specs2-core"  % specs2 % Test
@@ -33,5 +31,4 @@ object Dependencies {
   val specs2Mock  = "org.specs2" %% "specs2-mock"  % specs2 % Test
 
   val scalatest = "org.scalatest" %% "scalatest" % "3.0.9"  % Test
-
 }
