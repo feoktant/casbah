@@ -29,13 +29,7 @@ inThisBuild(List(
   scalafixScalaBinaryVersion := CrossVersion.binaryScalaVersion(scalaVersion.value),
 ))
 
-// Explicitly stop MaxTimeSpec test execution on GithubActions
-// since there is no way to `--setParameter enableTestCommands=1` on running mongo container.
-// TODO: find the way how to fix this
 val isCi = settingKey[Boolean]("Detects if the build is running on a CI environment.")
-isCi := sys.env.getOrElse("CI", "false").toBoolean
-Test / testOptions += Tests.Filter(s => !s.contains("MaxTimeSpec") || !isCi.value)
-
 
 val scalacOptionsSettings = Seq(
   scalacOptions ++= Seq("-unchecked", "-feature", "-Xlint:-missing-interpolator")
@@ -113,7 +107,14 @@ lazy val core = project.in(file("casbah-core"))
   .dependsOn(query)
   .settings(casbahDefaultSettings)
   .settings(
-    Test / parallelExecution := false
+    Test / parallelExecution := false,
+
+    // Explicitly stop MaxTimeSpec test execution on GithubActions
+    // since there is no way to `--setParameter enableTestCommands=1` on running mongo container.
+    // TODO: find the way how to fix this
+    Test / testOptions += Tests.Filter { testClass =>
+      !(testClass.endsWith("MaxTimeSpec") && sys.env.get("CI").contains("true"))
+    },
   )
 
 lazy val query = project.in(file("casbah-query"))
